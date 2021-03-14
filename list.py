@@ -45,6 +45,16 @@ class LinkedList():
         else:
             raise IndexError('List index out of range')
 
+    def __repr__(self):
+        r = ""
+        pointer = self.head
+        while(pointer):
+            r = r + str(pointer.data) + " -> "
+            pointer = pointer.next
+        return r
+
+    def __str__(self):
+        return self.__repr__()
 
 
 

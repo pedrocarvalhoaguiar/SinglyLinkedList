@@ -1,2 +1,2 @@
 # SinglyLinkedList
- Singly Linked Lists (OOP and Data Structures study)
+ Python Singly Linked Lists (OOP and Data Structures study)

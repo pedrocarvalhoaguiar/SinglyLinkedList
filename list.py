@@ -45,22 +45,75 @@ class LinkedList():
         else:
             raise IndexError('List index out of range')
 
-    def __repr__(self):
-        r = ""
+    def removeBV(self, value):
+        if not self.head:
+            raise ValueError('List is empty')
+        elif self.head.data == value:
+            self.head = self.head.next
+            self.__size -= 1
+        else:
+            ancestor = self.head
+            pointer = self.head.next
+            while pointer:
+                if pointer.data == value:
+                    ancestor.next = pointer.next
+                    self.__size -= 1
+                    return True
+                ancestor = pointer
+                pointer = pointer.next
+            raise ValueError(f'{value} is not in list')
+
+    def index(self, value):
         pointer = self.head
-        while(pointer):
-            r = r + str(pointer.data) + " -> "
-            pointer = pointer.next
-        return r
+        count = 0
+        while pointer:
+            if pointer.data == value:
+                return count
+            else:
+                pointer = pointer.next
+                count += 1
+        raise ValueError(f'{value} is not in list')
+
+    def removeBI(self, index):
+        if index < 0:
+            raise ValueError("Can't interate with negative value")
+        elif self.head == None:
+            raise ValueError('list is empity')
+        elif self.head == self._getNode(index):
+            self.head = self.head.next
+            self.__size -= 1
+            return True
+        elif self.head.next == None:
+            self.head = self.head.next
+            self.__size -= 1
+            return True
+        else:
+            ancestor = self.head
+            pointer = self.head.next
+            while pointer != self._getNode(index):
+                ancestor = pointer
+                pointer = pointer.next
+            try:
+                ancestor.next = pointer.next
+                self.__size -= 1
+                return True
+            except:
+                raise IndexError('index out of range')
+
+    def __repr__(self):
+        if not self.head:
+            return '[]'
+        else:
+            r = ""
+            i = "["
+            e = "]"
+            pointer = self.head
+            while(pointer):
+                r = r + str(pointer.data) + " -> "
+                pointer = pointer.next
+            return i + r + e
 
     def __str__(self):
         return self.__repr__()
 
-
-
-l = LinkedList()
-
-l.append(4)
-l.append(5)
-
-print(l[2])
+        

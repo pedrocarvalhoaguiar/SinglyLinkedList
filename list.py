@@ -19,6 +19,11 @@ class LinkedList():
             pointer.next = Node(value)
         self.__size += 1
 
+    def insert(self, value):
+        newNode = Node(value)
+        newNode.next = self.head.next
+        self.head = newNode
+
     def __len__(self):
         return self.__size
 
@@ -101,19 +106,18 @@ class LinkedList():
                 raise IndexError('index out of range')
 
     def __repr__(self):
-        if not self.head:
-            return '[]'
-        else:
-            r = ""
-            i = "["
-            e = "]"
-            pointer = self.head
-            while(pointer):
-                r = r + str(pointer.data) + " -> "
-                pointer = pointer.next
-            return i + r + e
+        r = ""
+        pointer = self.head
+        while(pointer):
+            r = r + str(pointer.data) + " -> "
+            pointer = pointer.next
+        return '[' + r + ']'
 
-    def __str__(self):
-        return self.__repr__()
 
-        
+l = LinkedList()
+
+l.append(1)
+l.append(2)
+l.append(3)
+l[2] = 4
+print(l)

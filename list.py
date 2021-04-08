@@ -21,7 +21,7 @@ class LinkedList():
 
     def insert(self, value):
         newNode = Node(value)
-        newNode.next = self.head.next
+        newNode.next = self.head
         self.head = newNode
 
     def __len__(self):
@@ -120,4 +120,6 @@ l.append(1)
 l.append(2)
 l.append(3)
 l[2] = 4
+print(l)
+l.insert(3)
 print(l)

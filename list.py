@@ -19,7 +19,7 @@ class LinkedList():
             pointer.next = Node(value)
         self.__size += 1
 
-    def insert(self, value):
+    def insertInit(self, value):
         newNode = Node(value)
         newNode.next = self.head
         self.head = newNode
@@ -35,6 +35,17 @@ class LinkedList():
             else:
                 raise IndexError('List index out of range')
         return pointer
+
+    def insertMid(self, index, value):
+        node = Node(value)
+        if index == 0:
+            node.next = self.head
+            self.head = node
+        else:
+            pointer = self._getNode(index - 1)
+            node.next = pointer.next
+            pointer.next = node
+        self._size += 1
 
     def __getitem__(self, index):
         pointer = self._getNode(index)
